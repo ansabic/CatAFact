@@ -6,18 +6,18 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
-interface ApiService {
-    @GET("facts/random?animal_type=cat&amount=1")
-    suspend fun getFact(): Response<Result>
+interface ApiServiceSecondary {
+
+    @GET("fact?max_length=140")
+    suspend fun getSecondaryFact(): Response<SecondaryResult>
 
     companion object {
-        val mainClient = Retrofit
+        val secondaryClient = Retrofit
             .Builder()
             .client(OkHttpClient.Builder().build())
-            .baseUrl(mainUrl)
+            .baseUrl(secondaryUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(ApiService::class.java)
+            .create(ApiServiceSecondary::class.java)
     }
-
 }

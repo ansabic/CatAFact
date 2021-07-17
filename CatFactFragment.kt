@@ -9,7 +9,8 @@ import com.example.catafact.databinding.CatFactFragmentBinding
 
 class CatFactFragment : Fragment() {
 
-    private val viewModel = CatFactViewModel(Repository(ApiService.client))
+
+    private val viewModel = CatFactViewModel()
     private var _binding: CatFactFragmentBinding? = null
     private val binding get() = _binding!!
 
@@ -17,13 +18,14 @@ class CatFactFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = CatFactFragmentBinding.inflate(layoutInflater,container,false)
+        _binding = CatFactFragmentBinding.inflate(layoutInflater, container, false)
         observe()
         listen()
-        inflateWithQuote()
+        inflateWithFact()
         return binding.root
     }
-    private fun inflateWithQuote() {
+
+    private fun inflateWithFact() {
         viewModel.getRandomFact()
     }
 
